@@ -92,15 +92,17 @@ def draw_img_on_json(json_file):
         for e in data:
             left_top = (int(e["location"]["x1"] - int(min_x)), int(e["location"]["y1"] - int(min_y)))
             right_bottom = (int(e["location"]["x2"] - int(min_x)), int(e["location"]["y2"] - int(min_y)))
-            thickness = 2
+            thickness = 1
             cv2.rectangle(image, left_top, right_bottom, get_color(classes.index(int(e["class"])), len(classes)), thickness)
-            
-        cv2.imshow('Image', image)
-        cv2.waitKey(0)
-            
+        name, ext = os.path.splitext(json_file)
+        cv2.imwrite("./annotations/_/" + name + "_j.PNG", image)
+def grouping(json_file):
+    with open("./annotations/_/" + json_file, 'r') as fp:
+        data = json.loads(fp.read().strip())
+        print(data)
         
-
 read_obj_names()
 convert_type()
 
 draw_img_on_json("00001216.json")
+grouping("00001216.json")
