@@ -25,11 +25,14 @@ with open("./log.txt", "r") as fp:
         data[mip].append(val)
 
 for i in range(5):
-    plt.plot(range(epoch + 1), data[i], color=colors[i % len(colors)], label='MIP' + str(i)) 
-
+    x = range(epoch + 1)
+    y = data[i]
+    plt.plot(x, y, color=colors[i % len(colors)], label='MIP' + str(i)) 
+    plt.xticks(np.arange(min(x), max(x)+1, 1))
 plt.legend() 
 plt.title("FPR")
 plt.savefig("images/epoch-" + str(epoch) + ".png")
+plt.show()
 
         
 
