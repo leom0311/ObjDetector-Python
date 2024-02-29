@@ -33,8 +33,3 @@ plt.legend()
 plt.title("FPR")
 plt.savefig("images/epoch-" + str(epoch) + ".png")
 plt.show()
-
-        
-
-        
-        
