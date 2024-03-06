@@ -8,9 +8,10 @@ for i in range(5):
     data.append([])
 colors = ['c', 'g', 'b', 'y', 'm']
 
-key = "FPR"
+key = "cls-loss"
 
 epochs = []
+step = 5
 with open("./log.txt", "r") as fp:
     epoch = -1
     for line in fp.readlines():
@@ -28,12 +29,13 @@ with open("./log.txt", "r") as fp:
         val = float(str.strip(line.split("]")[1]))
         data[mip].append(val)
 
+print(data)
 for i in range(5):
     x = epochs 
     # range(epoch + 1)
     y = data[i]
     plt.plot(x, y, color=colors[i % len(colors)], label='MIP' + str(i)) 
-    plt.xticks(np.arange(min(x), max(x)+1, 10))
+    plt.xticks(np.arange(min(x), max(x)+1, step))
 plt.legend() 
 plt.title(key)
 plt.savefig("images/epoch-" + str(epoch) + ".png")
